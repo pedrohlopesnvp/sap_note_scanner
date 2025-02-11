@@ -20,12 +20,12 @@ This application was developed to **simplify** the work of developers and Basis 
 - To execute, simply run the following command in the terminal:  
 
   ```sh
-  py sap_note_scanner
+  py sap_note_scanner.py
   ```  
 
 - Ensure there is a folder named **"coleta"** in the same directory.  
 - The application requires **SAP credentials** and a list of notes to be analyzed.  
-- At the end of execution, a **TXT file** will be generated inside the **"coleta"** folder.  
+- At the end of execution, a **TXT file** will be generated inside the **"coleta"** folder with all the prerequisites that would take you a long time to find.
 
 ### 📌 Installation  
 
@@ -43,26 +43,26 @@ Thank you for reading! I hope you **test and collaborate** with this project. �
 
 ## 🇧🇷 Scanner de Notas SAP  
 
-Se você trabalha com SAP—seja ABAP, Fiori UI5, CAP ou qualquer outro módulo ERP—com certeza já se deparou com as **SAP Notes**.  
+Se você trabalha com SAP—seja ABAP, Fiori UI5, CAP ou qualquer outro módulo ERP—com certeza já se deparou com as **Notas SAP**.  
 
-As **SAP Notes** são essenciais para atualizações e informações, mas podem ser um **pesadelo** quando vêm recheadas de **pré-requisitos** difíceis de rastrear.  
+As **Notas SAP** são essenciais para atualizações e informações, mas podem ser um **pesadelo** quando vêm recheadas de **pré-requisitos** difíceis de rastrear.  
 
 ### 🎯 Objetivo  
 
-Este aplicativo foi desenvolvido para **facilitar** o trabalho de desenvolvedores e equipes de Basis, catalogando todos os **pré-requisitos** de uma SAP Note.  
+Este aplicativo foi desenvolvido para **facilitar** o trabalho de desenvolvedores e equipes de Basis, catalogando todos os **pré-requisitos** de uma Nota SAP.  
 
 ### 🛠️ Como Funciona  
 
-- O programa foi feito em **Python** e usa **Web Scraping com Selenium** para buscar SAP Notes no blog **SAP for Me**.  
+- O programa foi feito em **Python** e usa **Web Scraping com Selenium** para buscar Notas SAP no blog **SAP for Me**.  
 - Para executar, basta rodar o seguinte comando no terminal:  
 
   ```sh
-  py sap_note_scanner
+  py sap_note_scanner.py
   ```  
 
 - Certifique-se de que há uma pasta chamada **"coleta"** no mesmo diretório.  
 - O aplicativo exige **credenciais SAP** e uma lista de notas a serem analisadas.  
-- Ao final da execução, um **arquivo TXT** será gerado na pasta **"coleta"**.  
+- Ao final da execução, um **arquivo TXT** será gerado na pasta **"coleta"** com todos os pre=requisitos que você levaria muito tempo para achar.
 
 ### 📌 Instalação  
 
