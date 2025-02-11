@@ -20,7 +20,7 @@ This application was developed to **simplify** the work of developers and Basis 
 - To execute, simply run the following command in the terminal:  
 
   ```sh
-  sap_note_scanner
+  py sap_note_scanner
   ```  
 
 - Ensure there is a folder named **"coleta"** in the same directory.  
@@ -57,7 +57,7 @@ Este aplicativo foi desenvolvido para **facilitar** o trabalho de desenvolvedore
 - Para executar, basta rodar o seguinte comando no terminal:  
 
   ```sh
-  sap_note_scanner
+  py sap_note_scanner
   ```  
 
 - Certifique-se de que há uma pasta chamada **"coleta"** no mesmo diretório.  
