@@ -1,4 +1,4 @@
-# 🌟 SAP Note Scanner  
+#![sap](https://github.com/user-attachments/assets/cbbcf75f-0ba2-44c4-85a7-0ccc94a96fee)🌟 SAP Note Scanner  
 
 [🇺🇸 Read in English](#-sap-note-scanner) | [🇧🇷 Leia em Português](#-scanner-de-notas-sap)  
 
