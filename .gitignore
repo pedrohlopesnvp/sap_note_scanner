@@ -1,0 +1,21 @@
+# Ignorar caches do Python
+**/__pycache__/
+*.pyc
+*.pyo
+
+# Ignorar builds e distribuições
+build/
+dist/
+*.spec
+
+# Ignorar binários do WebDriver (chromedriver)
+chromedriver-win64/
+
+# Ignorar diretórios específicos do projeto
+coleta/
+
+# Ignorar ambientes virtuais do Python
+venv/
+.env
+
+README.pdf
