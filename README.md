@@ -1,4 +1,4 @@
-#🔵🌟 SAP Note Scanner  
+# 🔵🌟 SAP Note Scanner  
 
 [🇺🇸 Read in English](#-sap-note-scanner) | [🇧🇷 Leia em Português](#-scanner-de-notas-sap)  
 
