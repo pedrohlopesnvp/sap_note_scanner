@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/cbbcf75f-0ba2-44c4-85a7-0ccc94a96fee" width="20" height="20">
+  <img src="https://github.com/user-attachments/assets/cbbcf75f-0ba2-44c4-85a7-0ccc94a96fee" width="20" height="20" margin-top="5">
   🌟 SAP Note Scanner  
 </p>
 
