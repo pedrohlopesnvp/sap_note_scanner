@@ -23,7 +23,7 @@ This application was developed to **simplify** the work of developers and Basis 
   py sap_note_scanner.py
   ```  
 
-- Ensure there is a folder named **"coleta"** in the same directory.  
+- Ensure there is a folder named **"scanner"** in the same directory.  
 - The application requires **SAP credentials** and a list of notes to be analyzed.  
 - At the end of execution, a **TXT file** will be generated inside the **"scanner"** folder with all the prerequisites that would take you a long time to find.
 
@@ -60,9 +60,9 @@ Este aplicativo foi desenvolvido para **facilitar** o trabalho de desenvolvedore
   py sap_note_scanner.py
   ```  
 
-- Certifique-se de que há uma pasta chamada **"coleta"** no mesmo diretório.  
+- Certifique-se de que há uma pasta chamada **"scanner"** no mesmo diretório.  
 - O aplicativo exige **credenciais SAP** e uma lista de notas a serem analisadas.  
-- Ao final da execução, um **arquivo TXT** será gerado na pasta **"coleta"** com todos os pre=requisitos que você levaria muito tempo para achar.
+- Ao final da execução, um **arquivo TXT** será gerado na pasta **"scanner"** com todos os pre=requisitos que você levaria muito tempo para achar.
 
 ### 📌 Instalação  
 
