@@ -25,7 +25,7 @@ This application was developed to **simplify** the work of developers and Basis 
 
 - Ensure there is a folder named **"coleta"** in the same directory.  
 - The application requires **SAP credentials** and a list of notes to be analyzed.  
-- At the end of execution, a **TXT file** will be generated inside the **"coleta"** folder with all the prerequisites that would take you a long time to find.
+- At the end of execution, a **TXT file** will be generated inside the **"scanner"** folder with all the prerequisites that would take you a long time to find.
 
 ### 📌 Installation  
 
