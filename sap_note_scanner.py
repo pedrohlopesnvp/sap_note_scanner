@@ -1,3 +1,4 @@
+import os
 from login_interface import *
 from notes_interface import *
 from info_interface import *
@@ -32,7 +33,11 @@ if credentials_ok:
 
         espaco = ""
 
-        with open('coleta/todas_pre_notas_Testes.txt', 'w', encoding='utf-8') as arquivo:
+        # Criar a pasta 'scanner' se ela não existir
+        if not os.path.exists('scanner'):
+            os.makedirs('scanner')
+
+        with open('scanner/note_scanner.txt', 'w', encoding='utf-8') as arquivo:
 
             # Inicia coleta e exibição de informações
             get_info_notes(espaco, notas_iniciais, arquivo)
