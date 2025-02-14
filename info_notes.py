@@ -1,46 +1,42 @@
-# from connection import *
 from connection_google import *
 
-# Conjunto para armazenar notas já lidas
-notas_lidas = set()
-total_notas = 0
+notes_read = set()
+total_notes = 0
 
-def get_info_notes(espaco, notas, arquivo):
+def get_info_notes(space, notes, file, language):
 
-    global notas_lidas
-    global total_notas
+    global notes_read
+    global total_notes
 
     try:
         
-        for nota in notas:
-            print("Notas lidas:  " + str(notas_lidas))
-            if nota in notas_lidas:
-                print(f"Nota {nota} já foi lida. Pulando...")
+        for note in notes:
+            if note in notes_read:
+                # Jump to the next note
                 continue
 
-            # Marcar a nota como lida
-            notas_lidas.add(nota)
+            # Mark the note as read
+            notes_read.add(note)
 
-            print("Lendo nota " + nota)
-            total_notas += 1
-            url = f'https://me.sap.com/notes/{nota}/P'
+            total_notes += 1
+            url = f'https://me.sap.com/notes/{note}/{language["idiom"]}'
 
             driver.get(url)
 
             h2_element = WebDriverWait(driver, 60).until(EC.presence_of_element_located((By.TAG_NAME, 'h2')))
 
-            titulo = f'Nota: {h2_element.text}'
-            arquivo.write(espaco + titulo + '\n')
+            title = f'{language["note"]}{h2_element.text}'
+            file.write(space + title + '\n')
 
-            arquivo.write(espaco + url + '\n')
+            file.write(space + url + '\n')
 
-            prerequisites = f'Prerequisites notes:'
-            arquivo.write(espaco + prerequisites + '\n')
+            prerequisites = f'{language["pre_notes"]}'
+            file.write(space + prerequisites + '\n')
 
-            espaco = espaco + " "
+            space = space + " "
 
             try:
-                # Busca o tr referente aos prerequisites
+                # Search for the prerequisites of the note
                 rows = WebDriverWait(driver, 3).until(
                     EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'tr[data-sap-ui^="__item23-__table2-"]'))
                 )
@@ -50,11 +46,9 @@ def get_info_notes(espaco, notas, arquivo):
             pre_notes = []
 
             if not rows:
-                print("Não temos prerequisitos da nota " + nota)
-                arquivo.write(espaco + 'Sem pre-requisitos' + '\n')
+                file.write(space + language["without_prerequisites"] + '\n')
                 continue
             else:
-                print("Tem prerequisitos da nota " + nota)
                 pre_notes = []
                 for row in rows:
                     note_prerequisites = row.find_element(By.CSS_SELECTOR, 'td:nth-child(5) span')
@@ -62,12 +56,10 @@ def get_info_notes(espaco, notas, arquivo):
 
                     if pre_note not in pre_notes:
                         pre_notes.append(pre_note)
-                        arquivo.write(espaco + ' - ' + pre_note + '\n')
+                        file.write(space + ' - ' + pre_note + '\n')
 
-            print(pre_notes)
-
-            get_info_notes(espaco, pre_notes, arquivo)
+            get_info_notes(space, pre_notes, file, language)
 
     except Exception as e:
-        print("Erro ao buscar informações das notas: " + str(e))
+        print(language["error_to_get_notes"] + str(e))
         return

@@ -1,17 +1,15 @@
-# from connection import *
 from connection_google import *
 
 def close_banner():
-    # Espera o banner de consentimento desaparecer ou ser fechado
     try:
         consent_button = WebDriverWait(driver, 8).until(
-            EC.element_to_be_clickable((By.ID, 'truste-consent-button'))  # ID do botão de consentimento
+            EC.element_to_be_clickable((By.ID, 'truste-consent-button'))
         )
-        consent_button.click()  # Clica para fechar o banner
+        consent_button.click()
     except:
-        print("Nenhum banner de consentimento encontrado ou já fechado.")
+        print("No consent banner found or already closed.")
 
-def fazer_login(email, senha, id):
+def fazer_login(email, passwd, id):
 
     # Aguarda até que o campo de nome de usuário esteja presente
     username_field = WebDriverWait(driver, 40).until(
@@ -26,11 +24,11 @@ def fazer_login(email, senha, id):
 
     close_banner()
 
-    # Aguarda até que o campo senha esteja presenta
+    # Aguarda até que o campo passwd esteja presenta
     WebDriverWait(driver, 30).until(EC.presence_of_element_located((By.NAME, 'password')))
 
     password_field = driver.find_element(By.NAME, 'password')
-    password_field.send_keys(senha)  # Preenche a senha
+    password_field.send_keys(passwd)  # Preenche a passwd
 
     # Localiza e clica no botão de login
     pass_button = driver.find_element(By.CLASS_NAME, 'uid-login-as__submit-button') 

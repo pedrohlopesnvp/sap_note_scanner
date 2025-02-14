@@ -1,26 +1,21 @@
 import tkinter as tk
 from tkinter import messagebox
 
-def display_info_notes(notas_iniciais, total_notas, notas_lidas):
+def display_info_notes(initial_notes, total_notes, notes_read, language):
 
-    # Criando a janela principal
     root = tk.Tk()
     root.title("SAP Note Scanner")
-    
-    # Definir tamanho da janela
-    largura_janela = 350
-    altura_janela = 230
 
-    # Obter tamanho da tela
-    largura_tela = root.winfo_screenwidth()
-    altura_tela = root.winfo_screenheight()
+    window_weight = 350
+    window_height = 230
 
-    # Calcular a posição para centralizar
-    pos_x = (largura_tela // 2) - (largura_janela // 2)
-    pos_y = (altura_tela // 2) - (altura_janela // 2)
+    weight = root.winfo_screenwidth()
+    height = root.winfo_screenheight()
 
-    # Definir geometria da janela com posição centralizada
-    root.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
+    pos_x = (weight // 2) - (window_weight // 2)
+    pos_y = (height // 2) - (window_height // 2)
+
+    root.geometry(f"{window_weight}x{window_height}+{pos_x}+{pos_y}")
 
     root.configure(bg="white")
 
@@ -37,21 +32,17 @@ def display_info_notes(notas_iniciais, total_notas, notas_lidas):
     
     scrollbar = tk.Scrollbar(root, command=text_widget.yview)
 
-    # Configurar espaçamento entre linhas usando tag personalizada
+    # Config spacing tags
     text_widget.tag_configure("space", spacing1=5, spacing2=5, spacing3=5)
     
-    # Inserir os textos no Text
-    text_widget.insert(tk.END, "Resultado do Scanner:\n", "space")
-    text_widget.insert(tk.END, f"Notas Raiz: {notas_iniciais}\n", "space")
-    text_widget.insert(tk.END, f"Total de notas a serem aplicadas: {total_notas}\n", "space")
-    text_widget.insert(tk.END, f"Notas lidas: {notas_lidas}", "space")
+    text_widget.insert(tk.END, f"{language["scanner_result"]}\n", "space")
+    text_widget.insert(tk.END, f"{language["root_notes"]} {initial_notes}\n", "space")
+    text_widget.insert(tk.END, f"{language["total_notes"]} {total_notes}\n", "space")
+    text_widget.insert(tk.END, f"{language["read_notes"]} {notes_read}", "space")
 
-    # Tornar o Text somente leitura
     text_widget.config(state="disabled", wrap="word", yscrollcommand=scrollbar.set)
 
-    # Adicionar à janela
     scrollbar.pack(side="right", fill="y")
     text_widget.pack(pady=20)
 
-    # Inicia a interface gráfica e espera até que seja fechada
     root.mainloop()

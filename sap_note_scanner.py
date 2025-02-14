@@ -2,55 +2,54 @@ import os
 from login_interface import *
 from notes_interface import *
 from info_interface import *
+from select_language import *
 
-# Interface de login
-email, senha, id, credentials_ok = get_credentials()
+# Select language
+language = select_language()
+
+# Login Interface
+email, passwd, id, credentials_ok = get_credentials(language)
 
 if credentials_ok:
 
-    # Interface de seleção de notas
-    notas_iniciais = get_notes()
+    # Notes selection interface
+    initial_notes = get_notes(language)
 
-    print("Notas que serão analisadas:" + str(notas_iniciais))
+    print(language["notes_analyzed"] + str(initial_notes))
 
     try:
-        # Inicia o navegador
+        # Start the browser
         from connection_google import *
         from login import *
         from info_notes import *
         import info_notes
 
-        messagebox.showinfo("Login", "Iniciando login...")
+        messagebox.showinfo("Login", language["login"])
 
-        driver.get('https://me.sap.com/home')  # Abre a página alvo
+        driver.get('https://me.sap.com/home')
         
-        # Tenta fazer o login com os dados inseridos
         try:
-            fazer_login(email, senha, id)
+            fazer_login(email, passwd, id)
         except Exception as e:
-            messagebox.showerror("Erro", f"Falha no login: {str(e)}")
+            messagebox.showerror("Erro", language["error_login"]+f"{str(e)}")
             driver.quit()
 
-        espaco = ""
+        space = ""
 
-        # Criar a pasta 'scanner' se ela não existir
         if not os.path.exists('scanner'):
             os.makedirs('scanner')
 
-        with open('scanner/note_scanner.txt', 'w', encoding='utf-8') as arquivo:
+        with open('scanner/note_scanner.txt', 'w', encoding='utf-8') as file:
 
-            # Inicia coleta e exibição de informações
-            get_info_notes(espaco, notas_iniciais, arquivo)
+            get_info_notes(space, initial_notes, file, language)
 
-            arquivo.write('\nTotal de notas a serem aplicadas: ' + str(info_notes.total_notas))
-            print('\nTotal de notas a serem aplicadas: ' + str(info_notes.total_notas))
+            file.write('\n' + language["total_notes"] + str(info_notes.total_notes))
 
-            arquivo.write('\nNotas a serem aplicadas: ' + str(info_notes.notas_lidas))
-            print('Notas a serem aplicadas: ' + str(info_notes.notas_lidas))
+            file.write('\n' + language["notes_to_apply"] + str(info_notes.notes_read))
 
     finally:
-        # Fecha o navegador ao finalizar
+        # Close the browser
         driver.quit()
 
-        #Exibe informações na interface gráfica
-        display_info_notes(notas_iniciais, str(info_notes.total_notas), str(info_notes.notas_lidas))
+        # Interface to display the notes
+        display_info_notes(initial_notes, str(info_notes.total_notes), str(info_notes.notes_read), language)

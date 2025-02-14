@@ -8,18 +8,18 @@ from selenium.webdriver.support import expected_conditions as EC
 import subprocess
 import importlib.util
 
-# Verifica se o webdriver-manager está instalado
+# Verify if the package is installed
 package_name = "webdriver_manager"
 
 if importlib.util.find_spec(package_name) is None:
-    print(f"Pacote {package_name} não encontrado. Instalando...")
+    print(f"Package {package_name} not found. Installing...")
     subprocess.run(["pip", "install", "--upgrade", package_name], check=True)
 else:
-    print(f"Pacote {package_name} já está instalado.")
+    print(f"Package {package_name} is already installed.")
 
 from webdriver_manager.chrome import ChromeDriverManager
 
-# Configuração do WebDriver para Chrome
+# Configurations to start the browser
 options = webdriver.ChromeOptions()
 service = Service(ChromeDriverManager().install())
 
