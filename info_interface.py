@@ -16,6 +16,7 @@ def display_info_notes(initial_notes, total_notes, notes_read, language):
     pos_y = (height // 2) - (window_height // 2)
 
     root.geometry(f"{window_weight}x{window_height}+{pos_x}+{pos_y}")
+    root.resizable(False, False)
 
     root.configure(bg="white")
 

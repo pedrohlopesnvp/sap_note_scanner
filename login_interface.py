@@ -38,6 +38,7 @@ def get_credentials(language):
     pos_y = (height // 2) - (window_height // 2)
 
     root.geometry(f"{window_weight}x{window_height}+{pos_x}+{pos_y}")
+    root.resizable(False, False)
 
     tk.Label(root, text=language["credentials"], font=("Arial", 12), pady=20).pack()
 

@@ -70,12 +70,11 @@ def select_language():
     pos_y = (altura_tela // 2) - (altura_janela // 2)
 
     root.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
-
     root.resizable(False, False)
 
     lang_var = tk.StringVar(value="P")
 
-    label = tk.Label(root, text="Escolha o idioma / Choose the language:", font=("Arial", 11))
+    label = tk.Label(root, text="Choose the language:", font=("Arial", 11))
     label.pack(pady=10)
 
     radio_P = tk.Radiobutton(root, text="🇧🇷 Português", variable=lang_var, value="P", font=("Arial", 11), cursor="hand2")
@@ -88,7 +87,7 @@ def select_language():
         root.selected_language = lang_var.get()
         root.destroy()
 
-    btn_confirm = tk.Button(root, text="Confirmar / Confirm", bg="#041444", fg="white", font=("Arial", 12, "bold"), command=confirm_language)
+    btn_confirm = tk.Button(root, text="Confirm", bg="#041444", fg="white", font=("Arial", 12, "bold"), command=confirm_language)
     btn_confirm.pack(pady=10)
 
     root.selected_language = "P"  # Standard language
