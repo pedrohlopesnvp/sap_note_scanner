@@ -13,7 +13,9 @@ email, passwd, id, credentials_ok = get_credentials(language)
 if credentials_ok:
 
     # Notes selection interface
-    initial_notes = get_notes(language)
+    initial_notes, destination = get_notes(language)
+
+    print(destination)
 
     print(language["notes_analyzed"] + str(initial_notes))
 
@@ -39,7 +41,7 @@ if credentials_ok:
         if not os.path.exists('scanner'):
             os.makedirs('scanner')
 
-        with open('scanner/note_scanner.txt', 'w', encoding='utf-8') as file:
+        with open(destination, 'w', encoding='utf-8') as file:
 
             get_info_notes(space, initial_notes, file, language)
 
@@ -48,8 +50,8 @@ if credentials_ok:
             file.write('\n' + language["notes_to_apply"] + str(info_notes.notes_read))
 
     finally:
-        # Close the browser
+        # Close browser
         driver.quit()
 
-        # Interface to display the notes
-        display_info_notes(initial_notes, str(info_notes.total_notes), str(info_notes.notes_read), language)
+        # Interface to display notes
+        display_info_notes(initial_notes, str(info_notes.total_notes), str(info_notes.notes_read), language, file)

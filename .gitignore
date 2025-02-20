@@ -14,6 +14,7 @@ chromedriver-win64/
 # Ignorar diretórios específicos do projeto
 coleta/
 scanner/
+SAP Note Scanner/
 
 # Ignorar ambientes virtuais do Python
 venv/
@@ -24,4 +25,5 @@ favicon.ico
 README.txt
 sap_note_scanner_installer.exe
 sap_note_scanner_installer.rar
+SAP Note Scanner.rar
 setup.iss

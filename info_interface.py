@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 
-def display_info_notes(initial_notes, total_notes, notes_read, language):
+def display_info_notes(initial_notes, total_notes, notes_read, language, file):
 
     root = tk.Tk()
     root.title("SAP Note Scanner")
 
     window_weight = 350
-    window_height = 230
+    window_height = 220
 
     weight = root.winfo_screenwidth()
     height = root.winfo_screenheight()
@@ -44,6 +44,6 @@ def display_info_notes(initial_notes, total_notes, notes_read, language):
     text_widget.config(state="disabled", wrap="word", yscrollcommand=scrollbar.set)
 
     scrollbar.pack(side="right", fill="y")
-    text_widget.pack(pady=20)
+    text_widget.pack(pady=10)
 
     root.mainloop()

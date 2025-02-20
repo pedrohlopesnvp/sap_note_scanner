@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, filedialog
 
 notes = []
 
@@ -29,11 +29,33 @@ def get_notes(language):
             text_note.insert("1.0", placeholder_text)
             text_note.config(fg="gray")
 
+    def select_path():
+
+        global destination
+
+        try:
+            # Abrir caixa de diálogo para escolher o local e nome do arquivo
+            destination = filedialog.asksaveasfilename(
+                defaultextension=".txt",
+                filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
+                initialfile="note_scanner.txt",
+                title="Salvar Arquivo"
+            )
+
+            if destination:  # Se o usuário escolheu um local
+                messagebox.showinfo("Download", f"Arquivo salvo em:\n{destination}")
+                return
+            else:
+                messagebox.showwarning("Cancelado", "Nenhum local foi selecionado.")
+
+        except Exception as e:
+            messagebox.showerror("Erro", f"Não foi possível salvar o arquivo:\n{str(e)}")
+
     root = tk.Tk()
     root.title("SAP Note Scanner")
 
     window_weight = 350
-    window_height = 200
+    window_height = 280
 
     weight = root.winfo_screenwidth()
     height = root.winfo_screenheight()
@@ -55,9 +77,13 @@ def get_notes(language):
 
     text_note.pack(pady=5)
 
+    btn_save = tk.Button(root, text="Escolher destino do Scanner", bg="#041444", fg="white", font=("Arial", 12, "bold"), cursor="hand2",
+                         command=select_path)
+    btn_save.pack(pady=10)
+
     btn_send = tk.Button(root, text=language["send"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=on_submit)
     btn_send.pack(pady=10)
 
     root.mainloop()
 
-    return notes
+    return notes, destination
