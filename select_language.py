@@ -27,6 +27,12 @@ translations = {
         "scanner_result": "Resultado do Scanner:",
         "root_notes": "Notas Raiz:",
         "read_notes": "Notas lidas:",
+        "save_file": "Salvar Arquivo",
+        "cancel": "Cancelar",
+        "file_saved": "Arquivo salvo em:",
+        "no_file": "Nenhum arquivo foi selecionado.",
+        "isnt_possible": "Não foi possível salvar o arquivo:",
+        "select_destination": "Escolher destino do Scanner",
     },
     "E": {
         "idiom": "E",
@@ -52,6 +58,12 @@ translations = {
         "scanner_result": "Scanner Result:",
         "root_notes": "Root Notes:",
         "read_notes": "Read Notes:",
+        "save_file": "Save File",
+        "cancel": "Cancel",
+        "file_saved": "File saved in:",
+        "no_file": "No file was selected.",
+        "isnt_possible": "It wasn't possible to save the file:",
+        "select_destination": "Select Scanner destination",
     },
 }
 

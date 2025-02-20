@@ -34,22 +34,22 @@ def get_notes(language):
         global destination
 
         try:
-            # Abrir caixa de diálogo para escolher o local e nome do arquivo
+
             destination = filedialog.asksaveasfilename(
                 defaultextension=".txt",
                 filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
                 initialfile="note_scanner.txt",
-                title="Salvar Arquivo"
+                title=language["save_file"]
             )
 
-            if destination:  # Se o usuário escolheu um local
-                messagebox.showinfo("Download", f"Arquivo salvo em:\n{destination}")
+            if destination:
+                messagebox.showinfo("Download", f"{language["file_saved"]}\n{destination}")
                 return
             else:
-                messagebox.showwarning("Cancelado", "Nenhum local foi selecionado.")
+                messagebox.showwarning(language["cancel"], language["no_file"])
 
         except Exception as e:
-            messagebox.showerror("Erro", f"Não foi possível salvar o arquivo:\n{str(e)}")
+            messagebox.showerror("Erro", f"{language["isnt_possible"]}\n{str(e)}")
 
     root = tk.Tk()
     root.title("SAP Note Scanner")
@@ -77,7 +77,7 @@ def get_notes(language):
 
     text_note.pack(pady=5)
 
-    btn_save = tk.Button(root, text="Escolher destino do Scanner", bg="#041444", fg="white", font=("Arial", 12, "bold"), cursor="hand2",
+    btn_save = tk.Button(root, text=language["select_destination"], bg="#041444", fg="white", font=("Arial", 12, "bold"), cursor="hand2",
                          command=select_path)
     btn_save.pack(pady=10)
 
