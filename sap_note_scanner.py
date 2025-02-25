@@ -3,6 +3,12 @@ from login_interface import *
 from notes_interface import *
 from info_interface import *
 from select_language import *
+from save_data import *
+from save_excel import *
+
+#TODO Voltar a pegar todos os pré-requisitos de uma nota
+#TODO Botao de ok no final
+#TODO Enfeitar excel
 
 # Select language
 language = select_language()
@@ -45,6 +51,8 @@ if credentials_ok:
 
             get_info_notes(space, initial_notes, file, language)
 
+            print(notes_data)
+
             file.write('\n' + language["total_notes"] + str(info_notes.total_notes))
 
             file.write('\n' + language["notes_to_apply"] + str(info_notes.notes_read))
@@ -52,6 +60,10 @@ if credentials_ok:
     finally:
         # Close browser
         driver.quit()
+
+        save_data(info_notes.notes_data)
+
+        save_excel()
 
         # Interface to display notes
         display_info_notes(initial_notes, str(info_notes.total_notes), str(info_notes.notes_read), language, file)
