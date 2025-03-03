@@ -3,6 +3,8 @@ import os
 
 def save_data(data):
 
+    print(f"Data: {data}")
+
     file_name_sap_notes = "notes.json"
     file_name_scanner = "notes_scanner.json"
 
@@ -22,5 +24,3 @@ def save_data(data):
 
     with open(file_name_scanner, "w", encoding="utf-8") as json_file_scanner:
         json.dump(data, json_file_scanner, ensure_ascii=False, indent=4)
-
-    print(f"Dados salvos com sucesso em {file_name_sap_notes}!")

@@ -1,13 +1,13 @@
 import tkinter as tk
 from tkinter import messagebox
 
-def display_info_notes(initial_notes, total_notes, notes_read, language, file):
+def display_info_notes(initial_notes, total_notes, notes_read, language):
 
     root = tk.Tk()
     root.title("SAP Note Scanner")
 
     window_weight = 350
-    window_height = 220
+    window_height = 290
 
     weight = root.winfo_screenwidth()
     height = root.winfo_screenheight()
@@ -23,7 +23,7 @@ def display_info_notes(initial_notes, total_notes, notes_read, language, file):
     text_widget = tk.Text(root, 
                           font=("Arial", 12), 
                           height=10, 
-                          width=100, 
+                          width=110, 
                           bg="white", 
                           fg="black", 
                           bd=0, 
@@ -45,5 +45,8 @@ def display_info_notes(initial_notes, total_notes, notes_read, language, file):
 
     scrollbar.pack(side="right", fill="y")
     text_widget.pack(pady=10)
+
+    btn_login = tk.Button(root, text=language["close"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=root.quit)
+    btn_login.pack(pady=10)
 
     root.mainloop()

@@ -30,33 +30,11 @@ def get_notes(language):
             text_note.insert("1.0", placeholder_text)
             text_note.config(fg="gray")
 
-    def select_path():
-
-        global destination
-
-        try:
-
-            destination = filedialog.asksaveasfilename(
-                defaultextension=".txt",
-                filetypes=[("Text files", "*.txt"), ("All files", "*.*")],
-                initialfile="note_scanner.txt",
-                title=language["save_file"]
-            )
-
-            if destination:
-                messagebox.showinfo("Download", f"{language["file_saved"]}\n{destination}")
-                return
-            else:
-                messagebox.showwarning(language["cancel"], language["no_file"])
-
-        except Exception as e:
-            messagebox.showerror("Erro", f"{language["isnt_possible"]}\n{str(e)}")
-
     root = tk.Tk()
     root.title("SAP Note Scanner")
 
     window_weight = 350
-    window_height = 280
+    window_height = 220
 
     weight = root.winfo_screenwidth()
     height = root.winfo_screenheight()
@@ -77,10 +55,6 @@ def get_notes(language):
     text_note.bind("<FocusOut>", on_focus_out)
 
     text_note.pack(pady=5)
-
-    btn_save = tk.Button(root, text=language["select_destination"], bg="#041444", fg="white", font=("Arial", 12, "bold"), cursor="hand2",
-                         command=select_path)
-    btn_save.pack(pady=10)
 
     btn_send = tk.Button(root, text=language["send"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=on_submit)
     btn_send.pack(pady=10)

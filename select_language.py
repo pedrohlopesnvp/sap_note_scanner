@@ -33,6 +33,7 @@ translations = {
         "no_file": "Nenhum arquivo foi selecionado.",
         "isnt_possible": "Não foi possível salvar o arquivo:",
         "select_destination": "Escolher destino do Scanner",
+        "close": "Fechar",
     },
     "E": {
         "idiom": "E",
@@ -64,6 +65,7 @@ translations = {
         "no_file": "No file was selected.",
         "isnt_possible": "It wasn't possible to save the file:",
         "select_destination": "Select Scanner destination",
+        "close": "Close",
     },
 }
 

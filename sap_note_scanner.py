@@ -3,67 +3,64 @@ from login_interface import *
 from notes_interface import *
 from info_interface import *
 from select_language import *
+from check_notes import *
 from save_data import *
 from save_excel import *
 
-#TODO Voltar a pegar todos os pré-requisitos de uma nota
-#TODO Botao de ok no final
-#TODO Enfeitar excel
+#TODO Exibir mensagem das notas que precisarão ser lidas no site
+#TODO Se der qualquer tipo de erro no login ou na leitura, exibir mensagem para tentar novamente
+#TODO Enfeitar excel (Filtros, cores, mais informações)
 
 # Select language
 language = select_language()
 
-# Login Interface
-email, passwd, id, credentials_ok = get_credentials(language)
+# Notes selection interface
+initial_notes, destination = get_notes(language)
 
-if credentials_ok:
+notes_in_json = False
 
-    # Notes selection interface
-    initial_notes, destination = get_notes(language)
+root_notes = initial_notes.copy()
 
-    print(destination)
+notes_in_json, notes_data, notes_read = check_notes(initial_notes, notes_in_json)
 
-    print(language["notes_analyzed"] + str(initial_notes))
+if not notes_in_json:
+    # Login Interface
+    email, passwd, id, credentials_ok = get_credentials(language)
 
-    try:
-        # Start the browser
-        from connection_google import *
-        from login import *
-        from info_notes import *
-        import info_notes
+    if credentials_ok:
 
-        messagebox.showinfo("Login", language["login"])
-
-        driver.get('https://me.sap.com/home')
-        
         try:
-            fazer_login(email, passwd, id)
-        except Exception as e:
-            messagebox.showerror("Erro", language["error_login"]+f"{str(e)}")
+            # Start the browser
+            from connection_google import *
+            from login import *
+            from info_notes import *
+
+            messagebox.showinfo("Login", language["login"])
+
+            driver.get('https://me.sap.com/home')
+            
+            try:
+                fazer_login(email, passwd, id)
+            except Exception as e:
+                messagebox.showerror("Erro", language["error_login"]+f"{str(e)}")
+                driver.quit()
+
+            space = ""
+
+            if not os.path.exists('scanner'):
+                os.makedirs('scanner')
+
+            get_info_notes(initial_notes, language, notes_data, notes_read)
+
+        finally:
+            # Close browser
             driver.quit()
 
-        space = ""
+save_data(notes_data)
 
-        if not os.path.exists('scanner'):
-            os.makedirs('scanner')
+save_excel()
 
-        with open(destination, 'w', encoding='utf-8') as file:
+total_notes = len(notes_read)
 
-            get_info_notes(space, initial_notes, file, language)
-
-            print(notes_data)
-
-            file.write('\n' + language["total_notes"] + str(info_notes.total_notes))
-
-            file.write('\n' + language["notes_to_apply"] + str(info_notes.notes_read))
-
-    finally:
-        # Close browser
-        driver.quit()
-
-        save_data(info_notes.notes_data)
-
-        save_excel()
-
-        # Interface to display notes
-        display_info_notes(initial_notes, str(info_notes.total_notes), str(info_notes.notes_read), language, file)
+# Interface to display notes
+display_info_notes(root_notes, total_notes, notes_read, language)

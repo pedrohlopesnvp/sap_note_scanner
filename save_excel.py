@@ -9,32 +9,48 @@ def save_excel():
 
     for note, info in notes_data.items():
         prerequisites = info["prerequisites"]
-        first_row = True
-        
-        for pre_note, details in prerequisites.items():
+
+        if prerequisites == {'Sem pré-requisitos': {}}:
             rows.append([
-                note if first_row else "", 
-                info["title"] if first_row else "", 
-                info["url"] if first_row else "", 
-                pre_note,  
-                details.get("software_component", ""),
-                details.get("from_version", ""),
-                details.get("to_version", ""),
-                details.get("title", ""),
-                details.get("component", "")
+                note,  # Main note (first line only)
+                info["title"],  # Main note title
+                info["url"],  # Main Note URL
+                "",  # Software component
+                "",  # from_version
+                "",  # to_version
+                "Sem pré-requisitos",  # pre_note
+                "",  # Prerequisite title
+                ""  # Component
             ])
-            first_row = False
+            
+        else:
 
-    df = pd.DataFrame(rows, columns=["Nota", "Título", "URL", "Pré-requisitos", "Componente de software","Versão de", "Versão para", "Título", "Componente"])
+            first_row = True  # Controls the display of the note only on the first line
 
-    # Criando um writer do Excel com XlsxWriter
+            for software_component, versions in prerequisites.items():
+                for from_version, to_versions in versions.items():
+                    for to_version, pre_notes in to_versions.items():
+                        for pre_note, details in pre_notes.items():
+                            rows.append([
+                                note if first_row else "",  # Main note (first line only)
+                                info["title"] if first_row else "",  # Main note title
+                                info["url"] if first_row else "",  # Main Note URL
+                                software_component,  # Software component
+                                from_version,  # from_version
+                                to_version,  # to_version
+                                pre_note,  # pre_note
+                                details.get("title", ""),  # Prerequisite title
+                                details.get("component", "")  # Component
+                            ])
+                            first_row = False  # After the first line, leave the main note fields empty.
+
+    df = pd.DataFrame(rows, columns=["Nota", "Título", "URL", "Componente de software","Versão de", "Versão para", "Nota pré-requisito", "Título", "Componente"])
+
+    # Creating an Excel writer with XlsxWriter
     with pd.ExcelWriter("Notas_SAP.xlsx", engine="xlsxwriter") as writer:
         df.to_excel(writer, sheet_name="Notas SAP", index=False)
 
-        # Obtendo a planilha para ajustes manuais
         worksheet = writer.sheets["Notas SAP"]
         for i, col in enumerate(df.columns):
-            max_len = max(df[col].apply(len).max(), len(col)) + 2  # Pegando o tamanho máximo da coluna
-            worksheet.set_column(i, i, max_len)  # Ajusta a largura da coluna automaticamente
-
-    # df.to_excel("Notas_SAP.xlsx", index=False)
+            max_len = max(df[col].apply(len).max(), len(col)) + 2  # Getting the maximum column size
+            worksheet.set_column(i, i, max_len)
