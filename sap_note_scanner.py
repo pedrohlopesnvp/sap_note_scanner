@@ -79,13 +79,13 @@ if not notes_in_json:
                 if not retry:
                     driver.quit()
 
-if credentials_ok and not retry and login_ok and scanner_ok:
+if credentials_ok and not retry and login_ok and scanner_ok and root_notes != []:
 
     save_data(notes_data)
 
-    save_excel(language)
-
     total_notes = len(notes_read)
+
+    save_excel(root_notes, total_notes, notes_read, language)
 
     # Interface to display notes
     display_info_notes(root_notes, total_notes, notes_read, language)

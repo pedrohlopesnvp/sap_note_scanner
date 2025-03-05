@@ -49,7 +49,10 @@ translations = {
         "exc_tv": "Versão para", 
         "exc_pre_note": "Nota pré-requisito", 
         "exc_pre_title": "Título", 
-        "exc_comp": "Componente"
+        "exc_comp": "Componente",
+        "root_notes": "Notas Raiz:",
+        "total_notes": "Total de notas para aplicar:",
+        "notes_read": "Notas para aplicar:"
     },
     "E": {
         "idiom": "E",
@@ -97,7 +100,10 @@ translations = {
         "exc_tv": "To Version", 
         "exc_pre_note": "SAP Note/KBA", 
         "exc_pre_title": "Title", 
-        "exc_comp": "Component"
+        "exc_comp": "Component",
+        "root_notes": "Root Notes:",
+        "total_notes": "Total Notes:",
+        "notes_read": "Notes Read"
     },
 }
 
@@ -133,7 +139,7 @@ def select_language():
         root.selected_language = lang_var.get()
         root.destroy()
 
-    btn_confirm = tk.Button(root, text="Confirm", bg="#041444", fg="white", font=("Arial", 12, "bold"), command=confirm_language)
+    btn_confirm = tk.Button(root, text="Confirm", bg="#041444", fg="white", font=("Arial", 12, "bold"), command=confirm_language, cursor="hand2")
     btn_confirm.pack(pady=10)
 
     root.selected_language = "P"  # Standard language

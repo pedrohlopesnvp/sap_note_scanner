@@ -54,7 +54,7 @@ def get_credentials(language):
     entry_id = tk.Entry(root, width=30, font=("Arial", 11))
     entry_id.pack(pady=5)
 
-    btn_login = tk.Button(root, text="Login", bg="#041444", fg="white", font=("Arial", 12, "bold"), command=on_submit)
+    btn_login = tk.Button(root, text="Login", bg="#041444", fg="white", font=("Arial", 12, "bold"), command=on_submit, cursor="hand2")
     btn_login.pack(pady=10)
 
     root.mainloop()

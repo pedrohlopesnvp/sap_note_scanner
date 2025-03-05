@@ -5,7 +5,7 @@ def check_barriers(driver, note):
     # Barrier 1: Check if it stopped at the home page
     try:
         WebDriverWait(driver, 10).until(
-            EC.presence_of_element_located((By.ID, '__title27-inner'))
+            EC.presence_of_element_located((By.ID, '__title26-inner'))
         )
         raise Exception("Erro: The site took a long time to load and stopped on the home page")
     except Exception as e:

@@ -46,7 +46,7 @@ def display_info_notes(initial_notes, total_notes, notes_read, language):
     scrollbar.pack(side="right", fill="y")
     text_widget.pack(pady=10)
 
-    btn_login = tk.Button(root, text=language["close"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=root.quit)
+    btn_login = tk.Button(root, text=language["close"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=root.quit, cursor="hand2")
     btn_login.pack(pady=10)
 
     root.mainloop()

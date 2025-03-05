@@ -55,7 +55,7 @@ def get_notes(language):
 
     text_note.pack(pady=5)
 
-    btn_send = tk.Button(root, text=language["send"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=on_submit)
+    btn_send = tk.Button(root, text=language["send"], bg="#041444", fg="white", font=("Arial", 12, "bold"), command=on_submit, cursor="hand2")
     btn_send.pack(pady=10)
 
     root.mainloop()
