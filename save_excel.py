@@ -1,7 +1,7 @@
 import json
 import pandas as pd
 
-def save_excel():
+def save_excel(language):
     with open("notes_scanner.json", "r", encoding="utf-8") as file:
         notes_data = json.load(file)
 
@@ -10,7 +10,7 @@ def save_excel():
     for note, info in notes_data.items():
         prerequisites = info["prerequisites"]
 
-        if prerequisites == {'Sem pré-requisitos': {}}:
+        if prerequisites == {'void': {}}:
             rows.append([
                 note,  # Main note (first line only)
                 info["title"],  # Main note title
@@ -18,7 +18,7 @@ def save_excel():
                 "",  # Software component
                 "",  # from_version
                 "",  # to_version
-                "Sem pré-requisitos",  # pre_note
+                f"{language["without_prerequisites"]}",  # pre_note
                 "",  # Prerequisite title
                 ""  # Component
             ])
@@ -44,7 +44,17 @@ def save_excel():
                             ])
                             first_row = False  # After the first line, leave the main note fields empty.
 
-    df = pd.DataFrame(rows, columns=["Nota", "Título", "URL", "Componente de software","Versão de", "Versão para", "Nota pré-requisito", "Título", "Componente"])
+    df = pd.DataFrame(rows, columns=[
+        f"{language["exc_note"]}", 
+        f"{language["exc_title"]}", 
+        f"{language["exc_url"]}", 
+        f"{language["exc_sc"]}",
+        f"{language["exc_fv"]}", 
+        f"{language["exc_tv"]}", 
+        f"{language["exc_pre_note"]}", 
+        f"{language["exc_pre_title"]}", 
+        f"{language["exc_comp"]}"
+        ])
 
     # Creating an Excel writer with XlsxWriter
     with pd.ExcelWriter("Notas_SAP.xlsx", engine="xlsxwriter") as writer:

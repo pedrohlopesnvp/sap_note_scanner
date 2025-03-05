@@ -2,7 +2,6 @@ import tkinter as tk
 from tkinter import messagebox, filedialog
 
 notes = []
-destination = 'C:/note_scanner.txt'
 
 def get_notes(language):
 
@@ -61,4 +60,4 @@ def get_notes(language):
 
     root.mainloop()
 
-    return notes, destination
+    return notes

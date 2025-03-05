@@ -8,19 +8,23 @@ from selenium.webdriver.support import expected_conditions as EC
 import subprocess
 import importlib.util
 
-# Verify if the package is installed
-package_name = "webdriver_manager"
+def start_driver():
 
-if importlib.util.find_spec(package_name) is None:
-    print(f"Package {package_name} not found. Installing...")
-    subprocess.run(["pip", "install", "--upgrade", package_name], check=True)
-else:
-    print(f"Package {package_name} is already installed.")
+    # Verify if the package is installed
+    package_name = "webdriver_manager"
 
-from webdriver_manager.chrome import ChromeDriverManager
+    if importlib.util.find_spec(package_name) is None:
+        print(f"Package {package_name} not found. Installing...")
+        subprocess.run(["pip", "install", "--upgrade", package_name], check=True)
+    else:
+        print(f"Package {package_name} is already installed.")
 
-# Configurations to start the browser
-options = webdriver.ChromeOptions()
-service = Service(ChromeDriverManager().install())
+    from webdriver_manager.chrome import ChromeDriverManager
 
-driver = webdriver.Chrome(service=service, options=options)
+    # Configurations to start the browser
+    options = webdriver.ChromeOptions()
+    service = Service(ChromeDriverManager().install())
+
+    driver = webdriver.Chrome(service=service, options=options)
+
+    return driver

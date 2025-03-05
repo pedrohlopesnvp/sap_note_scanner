@@ -3,8 +3,6 @@ import os
 
 def save_data(data):
 
-    print(f"Data: {data}")
-
     file_name_sap_notes = "notes.json"
     file_name_scanner = "notes_scanner.json"
 
