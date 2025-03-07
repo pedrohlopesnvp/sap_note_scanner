@@ -79,6 +79,10 @@ def save_excel(root_notes, total_notes, notes_read, language):
 
         # Adjust the size of the columns
         worksheet = writer.sheets["Notas SAP"]
+        num_cols = len(df.columns)  # Número de colunas no DataFrame
+        num_rows = len(df)  # Número de linhas no DataFrame
+        worksheet.autofilter(2, 0, 2 + num_rows - 1, num_cols - 1)  # Linha 2 até o fim dos dados
+
         for i, col in enumerate(df.columns):
             # Calculates maximum column and title length separately
             content_lengths = df[col].astype(str).map(len)

@@ -10,7 +10,7 @@ from connection_google import *
 from login import *
 from info_notes import *
 
-#TODO Enfeitar excel (Filtros, cores, mais informações)
+#TODO Excel (Filtros, cores, mais informações)
 
 # Select language
 language = select_language()
@@ -25,6 +25,8 @@ scanner_ok     = True
 credentials_ok = True
 
 root_notes = initial_notes.copy()
+
+all_notes = get_all_notes()
 
 notes_in_json, notes_data, notes_read = check_notes(initial_notes, notes_in_json)
 

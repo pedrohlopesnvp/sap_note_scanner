@@ -13,6 +13,7 @@ chromedriver-win64/
 
 # Ignorar diretórios específicos do projeto
 coleta/
+exemplo_coleta/
 scanner/
 SAP Note Scanner/
 
@@ -26,6 +27,7 @@ README.txt
 sap_note_scanner_installer.exe
 sap_note_scanner_installer.rar
 SAP Note Scanner.rar
+SAP Note Scanner A.rar
 setup.iss
 Notas_SAP.xlsx
 notes_scanner.json

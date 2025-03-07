@@ -1,6 +1,18 @@
 import json
 import os
 
+def get_all_notes():
+    notes_json = "notes.json"
+
+    if os.path.exists(notes_json):
+        with open(notes_json, "r", encoding="utf-8") as json_file:
+            try:
+                all_notes = json.load(json_file)
+            except:
+                all_notes = {}
+        
+        return all_notes
+
 def check_notes(initial_notes, notes_in_json):
     notes_json = "notes.json"
     collected_notes = []  # List to collect notes in order
