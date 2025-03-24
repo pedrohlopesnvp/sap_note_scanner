@@ -31,16 +31,15 @@ def save_excel(root_notes, total_notes, notes_read, language):
                 ""  # Component
             ])
         else:
-            first_row = True  # Controls the display of the note only on the first line
 
             for software_component, versions in prerequisites.items():
                 for from_version, to_versions in versions.items():
                     for to_version, pre_notes in to_versions.items():
                         for pre_note, details in pre_notes.items():
                             rows.append([
-                                note if first_row else "",  # Main note (first line only)
-                                info["title"] if first_row else "",  # Main note title
-                                info["url"] if first_row else "",  # Main Note URL
+                                note,  # Main note (first line only)
+                                info["title"],  # Main note title
+                                info["url"],  # Main Note URL
                                 software_component,  # Software component
                                 from_version,  # from_version
                                 to_version,  # to_version
@@ -48,7 +47,6 @@ def save_excel(root_notes, total_notes, notes_read, language):
                                 details.get("title", ""),  # Prerequisite title
                                 details.get("component", "")  # Component
                             ])
-                            first_row = False  # After the first line, leave the main note fields empty.
 
     # Creating the DataFrame with the translated columns
     df = pd.DataFrame(rows, columns=[

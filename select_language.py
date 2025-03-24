@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import sys
 
 # Dict with translations for the application
 translations = {
@@ -109,6 +110,11 @@ translations = {
 
 # Interface to select the language
 def select_language():
+
+    def on_closing():
+        root.destroy() 
+        sys.exit(0)
+
     root = tk.Tk()
     root.title("Select Language")
 
@@ -123,6 +129,8 @@ def select_language():
 
     root.geometry(f"{largura_janela}x{altura_janela}+{pos_x}+{pos_y}")
     root.resizable(False, False)
+
+    root.protocol("WM_DELETE_WINDOW", on_closing)
 
     lang_var = tk.StringVar(value="P")
 

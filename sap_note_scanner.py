@@ -10,8 +10,6 @@ from connection_google import *
 from login import *
 from info_notes import *
 
-#TODO Excel (Filtros, cores, mais informações)
-
 # Select language
 language = select_language()
 
@@ -63,7 +61,7 @@ if not notes_in_json:
 
                 try:
                     first_note = True
-                    get_info_notes(initial_notes, language, notes_data, notes_read, driver, first_note)
+                    get_info_notes(initial_notes, language, notes_data, notes_read, driver, first_note, all_notes)
                     scanner_ok = True
                 except Exception as e:
                     scanner_ok = False

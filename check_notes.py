@@ -34,7 +34,7 @@ def check_notes(initial_notes, notes_in_json):
                     # Check prerequisites
                     prereqs = data[note_id].get("prerequisites", {})
                     for system in prereqs:
-                        if system == "Sem pré-requisitos":
+                        if system == "void":
                             continue
                         for release in prereqs[system]:
                             for sp in prereqs[system][release]:
@@ -79,5 +79,30 @@ def check_notes(initial_notes, notes_in_json):
         collected_notes = []
         notes_in_json = False
         initial_notes[:] = initial_notes  # Keep as is in case of error
+
+    all_prereq_notes = set()
+    different_notes = []
+
+    def print_nested_notes(data):
+        if isinstance(data, dict):
+            for key in data:
+                if str(key).isdigit() and len(str(key)) > 3:
+                    all_prereq_notes.add(key)
+                print_nested_notes(data[key])
+
+    if filtered_notes_data:
+        print_nested_notes(filtered_notes_data)
+
+    if set(all_prereq_notes) != set(collected_notes):
+        # The lists dont have the same notes
+        missing = [note for note in all_prereq_notes if note not in collected_notes]
+        extra = [note for note in collected_notes if note not in all_prereq_notes]
+        
+        different_notes = missing + extra
+        
+        if different_notes:
+            # Different or missing notes found
+            initial_notes[:] = different_notes
+            notes_in_json = False
 
     return notes_in_json, filtered_notes_data, collected_notes

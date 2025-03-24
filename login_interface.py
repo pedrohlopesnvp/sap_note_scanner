@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import messagebox
+import sys
 
 # Global variables
 email = None
@@ -25,6 +26,10 @@ def get_credentials(language):
 
         root.destroy()
 
+    def on_closing():
+        root.destroy() 
+        sys.exit(0)
+
     root = tk.Tk()
     root.title("SAP Note Scanner")
     
@@ -39,6 +44,8 @@ def get_credentials(language):
 
     root.geometry(f"{window_weight}x{window_height}+{pos_x}+{pos_y}")
     root.resizable(False, False)
+
+    root.protocol("WM_DELETE_WINDOW", on_closing)
 
     tk.Label(root, text=language["credentials"], font=("Arial", 12), pady=20).pack()
 

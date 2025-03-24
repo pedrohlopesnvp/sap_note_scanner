@@ -1,4 +1,5 @@
 from connection_google import *
+from save_data import *
 
 def check_barriers(driver, note):
 
@@ -22,13 +23,21 @@ def check_barriers(driver, note):
         if "does not exist" in str(e):
             raise  # Propagate the exception to the outer try
 
-def get_info_notes(notes, language, notes_data, notes_read, driver, first_note):
+def get_info_notes(notes, language, notes_data, notes_read, driver, first_note, all_notes):
     try:
         for note in notes:
             if note in notes_read:
                 continue
             else:
                 notes_read.append(note)
+                if note in all_notes:
+                    last_note_info = {}
+                    note_info = all_notes.get(note, "void")
+                    last_note_info = {
+                        note: note_info
+                    }
+                    notes_data.update(last_note_info)
+                    continue
 
             url = f'https://me.sap.com/notes/{note}/{language["idiom"]}'
             driver.get(url)
@@ -64,6 +73,7 @@ def get_info_notes(notes, language, notes_data, notes_read, driver, first_note):
                 if not rows:
                     note_info[note]["prerequisites"]["void"] = {}
                     notes_data.update(note_info)
+                    save_data(notes_data)
                     continue
                 else:
                     pre_notes = []
@@ -88,7 +98,8 @@ def get_info_notes(notes, language, notes_data, notes_read, driver, first_note):
                             pre_notes.append(pre_note)
 
                 notes_data.update(note_info)
-                get_info_notes(pre_notes, language, notes_data, notes_read, driver, first_note)
+                save_data(notes_data)
+                get_info_notes(pre_notes, language, notes_data, notes_read, driver, first_note, all_notes)
 
             except Exception as e:
                 print(f"{language["error_collect"]} {note}: {e}")
